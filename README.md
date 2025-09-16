@@ -120,6 +120,7 @@ php artisan migrate --seed
 
 # Build assets & run
 npm run build
+npm install lightbox2 --save-dev
 php artisan serve
 ```
 
@@ -134,7 +135,7 @@ php artisan serve
 - PHP = 8.3.24
 - Composer
 - Node.js & NPM
-- MySQL/MariaDB atau SQLite
+- MySQL/MariaDB
 - Web server (Apache/Nginx) untuk production
 
 ### 🔧 Langkah Instalasi
@@ -201,17 +202,6 @@ npm run dev
 # Production
 npm run build
 ```
-
-#### 8️⃣ **Run Application**
-```bash
-# Development server
-php artisan serve
-
-# With custom host/port
-php artisan serve --host=0.0.0.0 --port=8080
-```
-
----
 
 ## 🏗️ Struktur Project
 
