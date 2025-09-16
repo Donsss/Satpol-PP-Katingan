@@ -22,10 +22,6 @@
 - [📦 Instalasi Detail](#-instalasi-detail)
 - [🏗️ Struktur Project](#️-struktur-project)
 - [🔐 Autentikasi & Role](#-autentikasi--role)
-- [📱 Screenshot](#-screenshot)
-- [🚀 Deployment](#-deployment)
-- [🤝 Kontribusi](#-kontribusi)
-- [📄 Lisensi](#-lisensi)
 
 ---
 
