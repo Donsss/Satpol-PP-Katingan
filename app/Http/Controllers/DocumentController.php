@@ -42,7 +42,7 @@ class DocumentController extends Controller
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+            'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:5120',
             'kategori' => 'nullable|string|max:100',
             'is_public' => 'required|boolean'
         ]);
@@ -89,7 +89,7 @@ class DocumentController extends Controller
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'document' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10240',
+            'document' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:5120',
             'kategori' => 'nullable|string|max:100',
             'is_public' => 'required|boolean'
         ]);

@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class SejarahController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $sejarah = Sejarah::first();
@@ -19,9 +16,6 @@ class SejarahController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         // Jika sudah ada data, redirect ke halaman edit.
@@ -33,9 +27,6 @@ class SejarahController extends Controller
         return view('sejarah.create', ['pageTitle' => 'Tambah Sejarah']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -48,9 +39,6 @@ class SejarahController extends Controller
                          ->with('success', 'Sejarah berhasil ditambahkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Sejarah $sejarah)
     {
         return view('sejarah.edit', [
@@ -59,9 +47,6 @@ class SejarahController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Sejarah $sejarah)
     {
         $request->validate([
@@ -74,9 +59,6 @@ class SejarahController extends Controller
                          ->with('success', 'Sejarah berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Sejarah $sejarah)
     {
         $sejarah->delete();

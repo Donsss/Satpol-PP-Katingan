@@ -46,7 +46,6 @@
                             </div>
                         </div>
 
-                        {{-- Tombol Aksi --}}
                         <div class="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-6 mt-6 border-t">
                             <a href="{{ route('admin.albums.show', $photo->album_id) }}" 
                                class="w-full sm:w-auto text-center px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">

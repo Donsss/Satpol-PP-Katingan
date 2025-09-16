@@ -42,7 +42,7 @@ class AlbumController extends Controller
         $validated = $request->validate([
             'judul' => 'required|max:255',
             'deskripsi' => 'nullable',
-            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
         if ($request->hasFile('cover')) {
@@ -91,7 +91,7 @@ class AlbumController extends Controller
         $validated = $request->validate([
             'judul' => 'required|max:255',
             'deskripsi' => 'nullable',
-            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
         if ($request->hasFile('cover')) {
@@ -109,12 +109,10 @@ class AlbumController extends Controller
 
     public function destroy(Album $album)
     {
-        // Hapus cover jika ada
         if ($album->cover) {
             Storage::disk('public')->delete($album->cover);
         }
         
-        // Hapus foto-foto dalam album (opsional)
         $album->photos()->delete();
         
         $album->delete();
