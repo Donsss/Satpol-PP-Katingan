@@ -120,7 +120,6 @@ php artisan migrate --seed
 
 # Build assets & run
 npm run build
-npm install lightbox2 --save-dev
 php artisan serve
 ```
 
@@ -153,6 +152,7 @@ composer install
 
 # Install Node.js dependencies
 npm install
+npm install lightbox2 --save-dev
 ```
 
 #### 3️⃣ **Environment Configuration**
