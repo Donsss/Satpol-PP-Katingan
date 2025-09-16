@@ -1,0 +1,1639 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Dokumentasi API Satpol PP",
+        "description": "Dokumentasi ini berisi semua endpoint API yang tersedia untuk proyek Satpol PP.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/albums": {
+            "get": {
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Menampilkan semua album dengan paginasi",
+                "operationId": "getAlbums",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Membuat album baru",
+                "operationId": "storeAlbum",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "judul"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "cover": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/albums/{id}": {
+            "get": {
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Menampilkan detail album beserta foto-fotonya",
+                "operationId": "getAlbumById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Memperbarui album (gunakan POST dengan _method=PUT)",
+                "operationId": "updateAlbum",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "cover": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Album"
+                ],
+                "summary": "Menghapus album dan semua fotonya",
+                "operationId": "deleteAlbum",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Login",
+                "description": "Login User Here",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "email"
+                                    },
+                                    "password": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/documents": {
+            "get": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Menampilkan semua dokumen (untuk admin/publik)",
+                "description": "Mengambil daftar dokumen dengan paginasi. Endpoint ini bisa difilter berdasarkan 'kategori' dan 'search'. Untuk admin, endpoint ini menampilkan semua dokumen. Untuk user biasa, hanya menampilkan dokumen yang bersifat publik.",
+                "operationId": "getDocuments",
+                "parameters": [
+                    {
+                        "name": "kategori",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Membuat dokumen baru",
+                "operationId": "storeDocument",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "document",
+                                    "is_public"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "document": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "kategori": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Surat",
+                                            "Laporan",
+                                            "Peraturan",
+                                            "Pengumuman",
+                                            "Formulir",
+                                            "Lainnya"
+                                        ]
+                                    },
+                                    "is_public": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/{id}": {
+            "get": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Menampilkan detail satu dokumen",
+                "operationId": "getDocumentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "403": {
+                        "description": "Akses ditolak"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Memperbarui dokumen (gunakan POST dengan _method=PUT)",
+                "operationId": "updateDocument",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "is_public",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "document": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "kategori": {
+                                        "type": "string"
+                                    },
+                                    "is_public": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Menghapus dokumen",
+                "operationId": "deleteDocument",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/{id}/download": {
+            "get": {
+                "tags": [
+                    "Dokumen"
+                ],
+                "summary": "Mengunduh file dokumen",
+                "operationId": "downloadDocument",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File berhasil diunduh"
+                    },
+                    "403": {
+                        "description": "Akses ditolak"
+                    },
+                    "404": {
+                        "description": "File tidak ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/struktur-organisasi": {
+            "get": {
+                "tags": [
+                    "Struktur Organisasi"
+                ],
+                "summary": "Menampilkan semua data struktur organisasi",
+                "description": "Mengambil semua data yang diurutkan berdasarkan seksi dan urutan, lalu dikelompokkan berdasarkan seksi.",
+                "operationId": "getStructures",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Struktur Organisasi"
+                ],
+                "summary": "Membuat data struktur organisasi baru",
+                "operationId": "storeStructure",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "position",
+                                    "section",
+                                    "order"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "example": "Kepala Seksi"
+                                    },
+                                    "nip": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "photo": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "section": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "order": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/struktur-organisasi/{id}": {
+            "get": {
+                "tags": [
+                    "Struktur Organisasi"
+                ],
+                "summary": "Menampilkan detail satu data struktur organisasi",
+                "operationId": "getStructureById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Struktur Organisasi"
+                ],
+                "summary": "Memperbarui data struktur organisasi (gunakan method POST dengan _method=PUT)",
+                "description": "Karena form-data tidak secara native mendukung PUT, kita 'menumpang' di method POST.",
+                "operationId": "updateStructure",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "position",
+                                    "section",
+                                    "order",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "position": {
+                                        "type": "string"
+                                    },
+                                    "photo": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "section": {
+                                        "type": "integer"
+                                    },
+                                    "order": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Struktur Organisasi"
+                ],
+                "summary": "Menghapus data struktur organisasi",
+                "operationId": "deleteStructure",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/albums/{albumId}/photos": {
+            "post": {
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Upload foto baru ke dalam album",
+                "operationId": "storePhoto",
+                "parameters": [
+                    {
+                        "name": "albumId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "photo"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    },
+                                    "photo": {
+                                        "description": "Bisa upload multiple file dengan nama photo[]",
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil diupload"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/photos/{id}": {
+            "get": {
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Menampilkan detail satu foto",
+                "operationId": "getPhotoById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Memperbarui detail (judul/deskripsi) foto",
+                "operationId": "updatePhoto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "judul"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Photo"
+                ],
+                "summary": "Menghapus sebuah foto",
+                "operationId": "deletePhoto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sejarah": {
+            "get": {
+                "tags": [
+                    "Sejarah"
+                ],
+                "summary": "Menampilkan data Sejarah",
+                "description": "Mengambil data Sejarah yang tersimpan (hanya ada satu).",
+                "operationId": "getSejarah",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sejarah"
+                ],
+                "summary": "Membuat data Sejarah baru",
+                "description": "Hanya bisa dijalankan jika belum ada data Sejarah sama sekali.",
+                "operationId": "storeSejarah",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "konten"
+                                ],
+                                "properties": {
+                                    "konten": {
+                                        "type": "string",
+                                        "example": "Ini adalah konten sejarah perusahaan."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "409": {
+                        "description": "Data sudah ada"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sejarah/{id}": {
+            "put": {
+                "tags": [
+                    "Sejarah"
+                ],
+                "summary": "Memperbarui data Sejarah",
+                "operationId": "updateSejarah",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "konten"
+                                ],
+                                "properties": {
+                                    "konten": {
+                                        "type": "string",
+                                        "example": "Ini adalah konten sejarah yang sudah diperbarui."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sejarah"
+                ],
+                "summary": "Menghapus data Sejarah",
+                "operationId": "deleteSejarah",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sliders": {
+            "get": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Menampilkan semua slider (untuk admin)",
+                "operationId": "getAllSliders",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Membuat slider baru",
+                "operationId": "storeSlider",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "image",
+                                    "order"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "order": {
+                                        "type": "integer"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sliders/public": {
+            "get": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Menampilkan slider yang aktif saja (untuk user)",
+                "operationId": "getActiveSliders",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    }
+                }
+            }
+        },
+        "/api/sliders/{id}": {
+            "get": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Menampilkan detail satu slider",
+                "operationId": "getSliderById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Memperbarui slider (gunakan POST dengan _method=PUT)",
+                "operationId": "updateSlider",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "order",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "order": {
+                                        "type": "integer"
+                                    },
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Slider"
+                ],
+                "summary": "Menghapus slider",
+                "operationId": "deleteSlider",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tugas": {
+            "get": {
+                "tags": [
+                    "Tugas & Fungsi"
+                ],
+                "summary": "Menampilkan data Tugas & Fungsi",
+                "description": "Mengambil data Tugas & Fungsi yang tersimpan (hanya ada satu).",
+                "operationId": "getTugas",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tugas & Fungsi"
+                ],
+                "summary": "Membuat data Tugas & Fungsi baru",
+                "description": "Hanya bisa dijalankan jika belum ada data sama sekali.",
+                "operationId": "storeTugas",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "konten"
+                                ],
+                                "properties": {
+                                    "konten": {
+                                        "type": "string",
+                                        "example": "Ini adalah konten tugas dan fungsi."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "409": {
+                        "description": "Data sudah ada"
+                    },
+                    "422": {
+                        "description": "Validasi gagal"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tugas/{id}": {
+            "put": {
+                "tags": [
+                    "Tugas & Fungsi"
+                ],
+                "summary": "Memperbarui data Tugas & Fungsi",
+                "description": "Memperbarui data Tugas & Fungsi yang sudah ada.",
+                "operationId": "updateTugas",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "konten"
+                                ],
+                                "properties": {
+                                    "konten": {
+                                        "type": "string",
+                                        "example": "Ini adalah konten yang sudah diperbarui."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Tugas & Fungsi"
+                ],
+                "summary": "Menghapus data Tugas & Fungsi",
+                "operationId": "deleteTugas",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/visi-misi": {
+            "get": {
+                "tags": [
+                    "Visi & Misi"
+                ],
+                "summary": "Menampilkan data Visi & Misi",
+                "description": "Mengambil data Visi & Misi yang tersimpan di database (biasanya hanya ada satu).",
+                "operationId": "getVisiMisiList",
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "visi": {
+                                                    "type": "string",
+                                                    "example": "Menjadi institusi terdepan..."
+                                                },
+                                                "misi": {
+                                                    "type": "string",
+                                                    "example": "1. Memberikan pelayanan..."
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Visi & Misi"
+                ],
+                "summary": "Membuat data Visi & Misi baru",
+                "description": "Hanya bisa dijalankan jika belum ada data Visi & Misi sama sekali.",
+                "operationId": "storeVisiMisi",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "visi",
+                                    "misi"
+                                ],
+                                "properties": {
+                                    "visi": {
+                                        "type": "string",
+                                        "example": "Visi baru perusahaan."
+                                    },
+                                    "misi": {
+                                        "type": "string",
+                                        "example": "Misi baru perusahaan."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat"
+                    },
+                    "401": {
+                        "description": "Unauthorized (Token tidak valid atau tidak ada)"
+                    },
+                    "409": {
+                        "description": "Conflict (Data sudah ada)"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/visi-misi/{id}": {
+            "get": {
+                "tags": [
+                    "Visi & Misi"
+                ],
+                "summary": "Menampilkan detail Visi & Misi",
+                "description": "Mengambil data detail Visi & Misi berdasarkan ID.",
+                "operationId": "getVisiMisiById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari Visi & Misi",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Visi & Misi"
+                ],
+                "summary": "Memperbarui data Visi & Misi",
+                "description": "Memperbarui data Visi & Misi yang sudah ada.",
+                "operationId": "updateVisiMisi",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari Visi & Misi",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "visi",
+                                    "misi"
+                                ],
+                                "properties": {
+                                    "visi": {
+                                        "type": "string",
+                                        "example": "Visi yang sudah diperbarui."
+                                    },
+                                    "misi": {
+                                        "type": "string",
+                                        "example": "Misi yang sudah diperbarui."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Visi & Misi"
+                ],
+                "summary": "Menghapus data Visi & Misi",
+                "description": "Menghapus data Visi & Misi yang ada.",
+                "operationId": "deleteVisiMisi",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari Visi & Misi yang akan dihapus",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Album",
+            "description": "Album"
+        },
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Dokumen",
+            "description": "Dokumen"
+        },
+        {
+            "name": "Struktur Organisasi",
+            "description": "Struktur Organisasi"
+        },
+        {
+            "name": "Photo",
+            "description": "Photo"
+        },
+        {
+            "name": "Sejarah",
+            "description": "Sejarah"
+        },
+        {
+            "name": "Slider",
+            "description": "Slider"
+        },
+        {
+            "name": "Tugas & Fungsi",
+            "description": "Tugas & Fungsi"
+        },
+        {
+            "name": "Visi & Misi",
+            "description": "Visi & Misi"
+        }
+    ]
+}
