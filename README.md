@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="https://img.shields.io/badge/Laravel-10.x-red?style=for-the-badge&logo=laravel" alt="Laravel">
-  <img src="https://img.shields.io/badge/PHP-8.1+-blue?style=for-the-badge&logo=php" alt="PHP">
+  <img src="https://img.shields.io/badge/PHP-8.3.24-blue?style=for-the-badge&logo=php" alt="PHP">
   <img src="https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap" alt="Bootstrap">
   <img src="https://img.shields.io/badge/Tailwind-3.x-cyan?style=for-the-badge&logo=tailwindcss" alt="Tailwind">
 </div>
@@ -131,7 +131,7 @@ php artisan serve
 
 ### 📋 Prerequisites
 
-- PHP >= 8.1
+- PHP = 8.3.24
 - Composer
 - Node.js & NPM
 - MySQL/MariaDB atau SQLite
@@ -252,7 +252,6 @@ Setelah seeding, tersedia user berikut:
 |-------|----------|------|-------|
 | `admin@satpolpp.test` | `password` | Super Admin | Full Access |
 | `editor@satpolpp.test` | `password` | Admin | Content Management |
-| `user@satpolpp.test` | `password` | User | Read Only |
 
 ### 🔑 Permissions
 
@@ -268,162 +267,14 @@ Setelah seeding, tersedia user berikut:
 - ❌ User management
 - ❌ System settings
 
-#### **User**
-- ✅ View content
-- ❌ Create/Edit/Delete
-- ❌ Admin panel access
-
 ---
 
-## 📱 Screenshot
-
-### 🏠 **Homepage**
-![Homepage](docs/screenshots/homepage.png)
-
-### 📰 **News Page**
-![News](docs/screenshots/news.png)
-
-### 🎛️ **Admin Dashboard**
-![Dashboard](docs/screenshots/dashboard.png)
-
-### 📱 **Mobile Responsive**
-![Mobile](docs/screenshots/mobile.png)
-
----
-
-## 🚀 Deployment
-
-### 🌐 **Shared Hosting**
-
-1. **Upload files** ke directory `public_html`
-2. **Move public folder contents** ke root
-3. **Update paths** di `index.php`
-4. **Set environment** ke production
-5. **Configure database** via cPanel
-
-### ☁️ **VPS/Cloud Server**
-
-```bash
-# Clone to server
-git clone https://github.com/username/satpol-pp.git /var/www/satpol-pp
-
-# Install dependencies
-cd /var/www/satpol-pp
-composer install --optimize-autoloader --no-dev
-npm install && npm run build
-
-# Set permissions
-chown -R www-data:www-data /var/www/satpol-pp
-chmod -R 755 /var/www/satpol-pp
-chmod -R 775 /var/www/satpol-pp/storage
-chmod -R 775 /var/www/satpol-pp/bootstrap/cache
-
-# Setup environment
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --force
-php artisan storage:link
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
-### 🐳 **Docker**
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - DB_HOST=db
-    depends_on:
-      - db
-  db:
-    image: mysql:8.0
-    environment:
-      - MYSQL_DATABASE=satpol_pp
-      - MYSQL_ROOT_PASSWORD=password
-```
-
----
-
-## 🤝 Kontribusi
-
-Kami sangat welcome untuk kontribusi! 🎉
-
-### 📝 **Cara Berkontribusi**
-
-1. **Fork** repository ini
-2. **Create branch** untuk fitur baru (`git checkout -b fitur-amazing`)
-3. **Commit changes** (`git commit -m 'Add amazing feature'`)
-4. **Push branch** (`git push origin fitur-amazing`)
-5. **Create Pull Request**
-
-### 🐛 **Melaporkan Bug**
-
-Gunakan [GitHub Issues](https://github.com/username/satpol-pp/issues) dengan template:
-- **Deskripsi bug**
-- **Steps to reproduce**
-- **Expected behavior**
-- **Screenshots** (jika ada)
-- **Environment info**
-
-### 💡 **Request Fitur**
-
-Silakan buat issue dengan label `enhancement` untuk request fitur baru.
-
----
-
-## 📞 Support & Contact
-
-- 📧 **Email:** admin@satpolpp.test
-- 🐛 **Issues:** [GitHub Issues](https://github.com/username/satpol-pp/issues)
-- 📖 **Documentation:** [Wiki](https://github.com/username/satpol-pp/wiki)
-
----
-
-## 📄 Lisensi
-
-Proyek ini dilisensikan under [MIT License](LICENSE).
-
-```
-MIT License
-
-Copyright (c) 2025 Satpol PP
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
 
 <div align="center">
   <h3>🚀 Built with ❤️ for Satpol PP</h3>
   <p>Made with Laravel • Bootstrap • Tailwind CSS</p>
-  
-  ⭐ **Jika project ini membantu, jangan lupa kasih star!** ⭐
 </div>
 
 ---
 
 **📅 Last Updated:** September 2025  
-**👨‍💻 Maintainer:** [Your Name](https://github.com/username)
