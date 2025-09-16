@@ -1,7 +1,7 @@
 # 🏛️ Satpol PP Website
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Laravel-10.x-red?style=for-the-badge&logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/Laravel-12.23.1-red?style=for-the-badge&logo=laravel" alt="Laravel">
   <img src="https://img.shields.io/badge/PHP-8.3.24-blue?style=for-the-badge&logo=php" alt="PHP">
   <img src="https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap" alt="Bootstrap">
   <img src="https://img.shields.io/badge/Tailwind-3.x-cyan?style=for-the-badge&logo=tailwindcss" alt="Tailwind">
