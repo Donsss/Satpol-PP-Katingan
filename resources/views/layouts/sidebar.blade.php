@@ -37,6 +37,23 @@
                 <x-sidebar-link :href="route('admin.sliders.index')" :active="request()->routeIs('admin.sliders.*')">
                     {{ __('Sliders') }}
                 </x-sidebar-link>
+
+                <x-sidebar-link :href="route('admin.agenda.index')" :active="request()->routeIs('admin.agenda.*')">
+                    {{ __('Agenda') }}
+                </x-sidebar-link>
+
+                <x-sidebar-link :href="route('admin.kontak.index')" :active="request()->routeIs('admin.kontak.*')">
+                    <div class="w-full flex items-center justify-between">
+                        <span>{{ __('Pesan Masuk') }}</span>
+
+                        {{-- Badge ini hanya akan muncul jika ada pesan yang belum dibaca --}}
+                        @if(isset($unread_messages_count) && $unread_messages_count > 0)
+                            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                                {{ $unread_messages_count }}
+                            </span>
+                        @endif
+                    </div>
+                </x-sidebar-link>
                 
                 {{-- Dropdown Profil --}}
                 <div x-data="{ open: {{ (request()->routeIs('admin.visi-misi.*') || request()->routeIs('admin.sejarah.*') || request()->routeIs('admin.tugas.*') || request()->routeIs('admin.organisasi.*')) ? 'true' : 'false' }} }" class="space-y-1">

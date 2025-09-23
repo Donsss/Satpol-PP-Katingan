@@ -4,6 +4,7 @@
             <img src="{{ asset('images/katingan-logo.png') }}" alt="Logo Dinas" class="img-fluid">
             <img src="{{ asset('images/satpol-logo.png') }}" alt="Logo Dinas" class="img-fluid">
             <img src="{{ asset('images/damkar.png') }}" alt="Logo Dinas" class="img-fluid">
+            <img src="{{ asset('images/linmas-logo.png') }}" alt="Logo Dinas" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,6 +33,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('dokumen*') ? 'active' : '' }}" href="{{ url('/dokumen')}}">Unduhan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('kontak*') ? 'active' : '' }}" href="{{ route('kontak.create') }}">Kontak</a>
                 </li>
             </ul>
         </div>

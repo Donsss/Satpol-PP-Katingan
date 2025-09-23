@@ -42,7 +42,7 @@ class DocumentController extends Controller
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:5120',
+            'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:7168',
             'kategori' => 'nullable|string|max:100',
             'is_public' => 'required|boolean'
         ]);
@@ -101,12 +101,9 @@ class DocumentController extends Controller
             'is_public' => $validated['is_public']
         ];
 
-        // Jika ada file baru diupload
         if ($request->hasFile('document')) {
-            // Hapus file lama
             Storage::delete($document->file_path);
 
-            // Upload file baru
             $file = $request->file('document');
             $filePath = $file->store('documents');
             $fileExtension = $file->getClientOriginalExtension();
@@ -201,7 +198,6 @@ class DocumentController extends Controller
 
     public function showUser(Document $document)
     {
-        // Cek apakah dokumen public
         if (!$document->is_public) {
             abort(403);
         }

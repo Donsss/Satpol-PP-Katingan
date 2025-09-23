@@ -79,7 +79,7 @@
                                             </label>
                                             <p class="pl-1">atau tarik dan lepas</p>
                                         </div>
-                                        <p class="text-xs text-gray-500">PDF, DOC, XLS, PPT, ZIP, dll (Max: 5MB)</p>
+                                        <p class="text-xs text-gray-500">PDF, DOC, XLS, PPT, ZIP, dll (Max: 7MB)</p>
                                         <p x-show="fileName" class="text-sm text-gray-900 font-semibold" x-text="fileName"></p>
                                     </div>
                                 </div>

@@ -24,13 +24,7 @@
                         <i class="fas fa-envelope fa-fw mt-1 me-3"></i>
                         <div>
                             <p class="mb-0">polpp@katingankab.go.id</p>
-                            <p class="mb-0">satpoldam@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item d-flex mb-4">
-                        <i class="fas fa-phone-alt fa-fw mt-1 me-3"></i>
-                        <div>
-                            <p class="mb-0">-</p>
+                            <p class="mb-0">satpoldam.katingan@gmail.com</p>
                         </div>
                     </div>
 
@@ -51,7 +45,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="mb-0 small">
-                        © 2025 DIREKTORAT POLISI PAMONG PRAJA DAN PERLINDUNGAN MASYARAKAT. All Rights Reserved.
+                        © 2025 POLISI PAMONG PRAJA. All Rights Reserved.
                     </p>
                 </div>
             </div>

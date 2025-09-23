@@ -23,7 +23,7 @@
                                     </div>
                                     <h3 class="news-title">
                                        <a href="{{ route('berita.user.show', [$berita->id, $berita->slug]) }}" class="text-decoration-none news-title-link">
-                                            {{ $berita->judul }}
+                                            {{ Str::limit($berita->judul, 85) }}
                                        </a>
                                     </h3>
                                     <p class="news-excerpt">{{ Str::limit(strip_tags($berita->berita), 80) }}...</p>

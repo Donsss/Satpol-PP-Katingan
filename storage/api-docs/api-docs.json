@@ -12,6 +12,507 @@
         }
     ],
     "paths": {
+        "/api/agenda": {
+            "get": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Menampilkan daftar agenda",
+                "description": "Mengambil daftar semua agenda dengan paginasi, diurutkan dari yang terbaru.",
+                "operationId": "getAgendaList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Nomor halaman untuk paginasi",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "judul": {
+                                                                "type": "string",
+                                                                "example": "Rapat Pleno"
+                                                            },
+                                                            "tanggal": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "example": "2024-11-20"
+                                                            },
+                                                            "waktu": {
+                                                                "type": "string",
+                                                                "format": "time",
+                                                                "example": "09:30:00"
+                                                            },
+                                                            "lokasi": {
+                                                                "type": "string",
+                                                                "example": "Gedung Serbaguna",
+                                                                "nullable": true
+                                                            },
+                                                            "deskripsi": {
+                                                                "type": "string",
+                                                                "example": "Pembahasan agenda tahunan.",
+                                                                "nullable": true
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "date-time"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "format": "date-time"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Menambahkan agenda baru",
+                "description": "Membuat data agenda baru.",
+                "operationId": "storeAgenda",
+                "requestBody": {
+                    "description": "Data agenda yang akan dibuat",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "tanggal",
+                                    "waktu"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string",
+                                        "example": "Rapat Koordinasi Bulanan"
+                                    },
+                                    "tanggal": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-12-31"
+                                    },
+                                    "waktu": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "14:00"
+                                    },
+                                    "lokasi": {
+                                        "type": "string",
+                                        "example": "Aula Utama Gedung A",
+                                        "nullable": true
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Pembahasan laporan kuartal terakhir.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Berhasil dibuat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Agenda berhasil ditambahkan."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "judul": {
+                                                    "type": "string",
+                                                    "example": "Rapat Koordinasi Bulanan"
+                                                },
+                                                "tanggal": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2024-12-31"
+                                                },
+                                                "waktu": {
+                                                    "type": "string",
+                                                    "format": "time",
+                                                    "example": "14:00:00"
+                                                },
+                                                "lokasi": {
+                                                    "type": "string",
+                                                    "example": "Aula Utama Gedung A",
+                                                    "nullable": true
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Pembahasan laporan kuartal terakhir.",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/agenda/{id}": {
+            "get": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Menampilkan detail agenda",
+                "description": "Mengambil data detail sebuah agenda berdasarkan ID.",
+                "operationId": "getAgendaById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari agenda",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "judul": {
+                                                    "type": "string",
+                                                    "example": "Rapat Pleno"
+                                                },
+                                                "tanggal": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2024-11-20"
+                                                },
+                                                "waktu": {
+                                                    "type": "string",
+                                                    "format": "time",
+                                                    "example": "09:30:00"
+                                                },
+                                                "lokasi": {
+                                                    "type": "string",
+                                                    "example": "Gedung Serbaguna",
+                                                    "nullable": true
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Pembahasan agenda tahunan.",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Memperbarui agenda",
+                "description": "Memperbarui data agenda yang sudah ada.",
+                "operationId": "updateAgenda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari agenda",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data agenda yang akan diperbarui",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "judul",
+                                    "tanggal",
+                                    "waktu"
+                                ],
+                                "properties": {
+                                    "judul": {
+                                        "type": "string",
+                                        "example": "Rapat Koordinasi Tahunan (Revisi)"
+                                    },
+                                    "tanggal": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-01-15"
+                                    },
+                                    "waktu": {
+                                        "type": "string",
+                                        "format": "time",
+                                        "example": "10:00"
+                                    },
+                                    "lokasi": {
+                                        "type": "string",
+                                        "example": "Ruang Meeting VIP",
+                                        "nullable": true
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Pembahasan rencana strategis tahunan.",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil diperbarui",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Agenda berhasil diperbarui."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "judul": {
+                                                    "type": "string",
+                                                    "example": "Rapat Koordinasi Tahunan (Revisi)"
+                                                },
+                                                "tanggal": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2025-01-15"
+                                                },
+                                                "waktu": {
+                                                    "type": "string",
+                                                    "format": "time",
+                                                    "example": "10:00:00"
+                                                },
+                                                "lokasi": {
+                                                    "type": "string",
+                                                    "example": "Ruang Meeting VIP",
+                                                    "nullable": true
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Pembahasan rencana strategis tahunan.",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Menghapus agenda",
+                "description": "Menghapus data agenda secara permanen.",
+                "operationId": "deleteAgenda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari agenda yang akan dihapus",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Agenda berhasil dihapus."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/albums": {
             "get": {
                 "tags": [
@@ -489,6 +990,285 @@
                         "description": "File tidak ditemukan"
                     }
                 }
+            }
+        },
+        "/api/kontak": {
+            "get": {
+                "tags": [
+                    "Pesan Kontak"
+                ],
+                "summary": "Menampilkan daftar semua pesan kontak",
+                "description": "Mengambil semua pesan kontak yang masuk dengan paginasi.",
+                "operationId": "getKontakList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Nomor halaman untuk paginasi",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "readOnly": true,
+                                                                "example": 1
+                                                            },
+                                                            "nama_lengkap": {
+                                                                "type": "string",
+                                                                "example": "Budi Santoso"
+                                                            },
+                                                            "email": {
+                                                                "type": "string",
+                                                                "format": "email",
+                                                                "example": "budi.s@example.com"
+                                                            },
+                                                            "telepon": {
+                                                                "type": "string",
+                                                                "example": "08123456789",
+                                                                "nullable": true
+                                                            },
+                                                            "tipe_pesan": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "Pertanyaan",
+                                                                    "Saran",
+                                                                    "Kritik",
+                                                                    "Lainnya"
+                                                                ],
+                                                                "example": "Saran"
+                                                            },
+                                                            "isi_pesan": {
+                                                                "type": "string",
+                                                                "example": "Saran saya agar websitenya lebih dioptimalkan."
+                                                            },
+                                                            "read_at": {
+                                                                "type": "string",
+                                                                "format": "date-time",
+                                                                "nullable": true
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "date-time",
+                                                                "readOnly": true
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "format": "date-time",
+                                                                "readOnly": true
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 15
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 150
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized (Token tidak valid)"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/kontak/{id}": {
+            "get": {
+                "tags": [
+                    "Pesan Kontak"
+                ],
+                "summary": "Menampilkan detail pesan kontak",
+                "description": "Mengambil detail satu pesan dan otomatis menandainya sebagai sudah dibaca.",
+                "operationId": "getKontakById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari pesan kontak",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operasi berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "readOnly": true,
+                                                    "example": 1
+                                                },
+                                                "nama_lengkap": {
+                                                    "type": "string",
+                                                    "example": "Budi Santoso"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "budi.s@example.com"
+                                                },
+                                                "telepon": {
+                                                    "type": "string",
+                                                    "example": "08123456789",
+                                                    "nullable": true
+                                                },
+                                                "tipe_pesan": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Pertanyaan",
+                                                        "Saran",
+                                                        "Kritik",
+                                                        "Lainnya"
+                                                    ],
+                                                    "example": "Saran"
+                                                },
+                                                "isi_pesan": {
+                                                    "type": "string",
+                                                    "example": "Saran saya agar websitenya lebih dioptimalkan."
+                                                },
+                                                "read_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "readOnly": true
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "readOnly": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Pesan Kontak"
+                ],
+                "summary": "Menghapus pesan kontak",
+                "description": "Menghapus data pesan kontak secara permanen.",
+                "operationId": "deleteKontak",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID dari pesan yang akan dihapus",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pesan berhasil dihapus."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/struktur-organisasi": {
@@ -1600,6 +2380,10 @@
     },
     "tags": [
         {
+            "name": "Agenda",
+            "description": "Agenda"
+        },
+        {
             "name": "Album",
             "description": "Album"
         },
@@ -1610,6 +2394,10 @@
         {
             "name": "Dokumen",
             "description": "Dokumen"
+        },
+        {
+            "name": "Pesan Kontak",
+            "description": "Pesan Kontak"
         },
         {
             "name": "Struktur Organisasi",

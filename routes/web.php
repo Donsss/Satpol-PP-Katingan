@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SejarahController;
@@ -135,7 +137,22 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::middleware(['role:super-admin'])->group(function () {
         Route::resource('users', UserController::class);
     });
+
+    Route::middleware(['role:super-admin|admin'])->prefix('kontak')->name('kontak.')->group(function () {
+        Route::get('/', [App\Http\Controllers\KontakController::class, 'indexAdmin'])->name('index');
+        Route::get('/{kontak}', [App\Http\Controllers\KontakController::class, 'showAdmin'])->name('show');
+        Route::delete('/{kontak}', [App\Http\Controllers\KontakController::class, 'destroyAdmin'])->name('destroy');
+    });
+
+    Route::middleware(['role:super-admin|admin'])->group(function () {
+        Route::resource('agenda', AgendaController::class);
+    });
 });
+
+Route::get('/api/agendas/{year}/{month}', [HomeController::class, 'getAgendasByMonth'])->name('agendas.api');
+
+Route::get('/kontak', [KontakController::class, 'create'])->name('kontak.create');
+Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
 require __DIR__.'/auth.php';
 

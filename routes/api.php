@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AlbumController;
 use App\Http\Controllers\Api\PhotoController;
 use App\Http\Controllers\Api\TugasController;
+use App\Http\Controllers\Api\AgendaController;
+use App\Http\Controllers\Api\KontakController;
 use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\SejarahController;
 use App\Http\Controllers\Api\DocumentController;
@@ -82,4 +84,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/albums/{album}/photos', [PhotoController::class, 'store']);
     Route::put('/photos/{photo}', [PhotoController::class, 'update']);
     Route::delete('/photos/{photo}', [PhotoController::class, 'destroy']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('kontak', KontakController::class)
+         ->except(['store', 'update']);
+});
+
+Route::get('/agenda', [AgendaController::class, 'index']);
+Route::get('/agenda/{agenda}', [AgendaController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/agenda', [AgendaController::class, 'store']);
+    Route::put('/agenda/{agenda}', [AgendaController::class, 'update']);
+    Route::delete('/agenda/{agenda}', [AgendaController::class, 'destroy']);
 });

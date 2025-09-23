@@ -36,7 +36,7 @@
     .carousel-item img {
         object-fit: cover;
         width: 100%;
-        height: 550px
+        height: 100dvh;
     }
     .carousel-caption {
         bottom: 8%;
