@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 16, 2025 at 05:38 AM
+-- Generation Time: Sep 23, 2025 at 04:19 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.24
 
@@ -37,63 +37,31 @@ CREATE TABLE `activity_logs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `activity_logs`
+-- Table structure for table `agendas`
 --
 
-INSERT INTO `activity_logs` (`id`, `user_id`, `description`, `loggable_type`, `loggable_id`, `created_at`, `updated_at`) VALUES
-(1, 3, 'karbit telah diperbarui Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-08 21:06:58', '2025-09-08 21:06:58'),
-(2, 3, 'karbit telah diperbarui Album \'test\'', 'App\\Models\\Album', 6, '2025-09-08 21:09:42', '2025-09-08 21:09:42'),
-(3, 3, 'karbit telah dibuat Photo \'test1\'', 'App\\Models\\Photo', 6, '2025-09-08 21:10:14', '2025-09-08 21:10:14'),
-(4, 3, 'karbit telah Menghapus Photo \'test1\'', 'App\\Models\\Photo', 6, '2025-09-08 21:12:25', '2025-09-08 21:12:25'),
-(5, 3, 'karbit telah Memperbarui Slider \'\'', 'App\\Models\\Slider', 2, '2025-09-08 21:14:40', '2025-09-08 21:14:40'),
-(6, 3, 'karbit telah Memperbarui Slider \'\'', 'App\\Models\\Slider', 2, '2025-09-08 21:15:07', '2025-09-08 21:15:07'),
-(7, NULL, 'Sistem telah Memperbarui Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-09 00:41:33', '2025-09-09 00:41:33'),
-(8, 3, 'karbit telah Menambahkan OrganizationalStructure \'io\'', 'App\\Models\\OrganizationalStructure', 24, '2025-09-09 00:42:32', '2025-09-09 00:42:32'),
-(9, 3, 'karbit telah Menghapus OrganizationalStructure \'io\'', 'App\\Models\\OrganizationalStructure', 24, '2025-09-09 00:43:00', '2025-09-09 00:43:00'),
-(10, NULL, 'Sistem telah Memperbarui Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-11 20:29:05', '2025-09-11 20:29:05'),
-(11, NULL, 'Sistem telah Memperbarui Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-11 20:50:04', '2025-09-11 20:50:04'),
-(12, 3, 'karbit telah Menambahkan Sejarah \'\'', 'App\\Models\\Sejarah', 1, '2025-09-11 21:24:19', '2025-09-11 21:24:19'),
-(13, NULL, 'Sistem telah Memperbarui Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-11 21:26:24', '2025-09-11 21:26:24'),
-(14, 3, 'karbit telah Memperbarui Sejarah \'\'', 'App\\Models\\Sejarah', 1, '2025-09-11 23:45:13', '2025-09-11 23:45:13'),
-(15, 3, 'karbit telah Menambahkan Tugas \'\'', 'App\\Models\\Tugas', 1, '2025-09-12 00:14:44', '2025-09-12 00:14:44'),
-(16, 3, 'karbit telah Memperbarui Slider \'\'', 'App\\Models\\Slider', 2, '2025-09-12 01:00:33', '2025-09-12 01:00:33'),
-(17, 3, 'karbit telah Memperbarui VisiMisi \'\'', 'App\\Models\\VisiMisi', 1, '2025-09-14 20:08:10', '2025-09-14 20:08:10'),
-(18, 3, 'karbit telah Menambahkan Document \'LKIP 2024 POLDAM\'', 'App\\Models\\Document', 2, '2025-09-14 20:41:21', '2025-09-14 20:41:21'),
-(19, 3, 'karbit telah Menambahkan Document \'RENJA POL PP DAMKAR 2025\'', 'App\\Models\\Document', 3, '2025-09-14 20:44:22', '2025-09-14 20:44:22'),
-(20, 3, 'karbit telah Menambahkan Document \'RENSTRA SATPOL PP DAMKAR 2025-2029\'', 'App\\Models\\Document', 4, '2025-09-14 20:45:15', '2025-09-14 20:45:15'),
-(21, 3, 'karbit telah Menambahkan Slider \'\'', 'App\\Models\\Slider', 4, '2025-09-15 00:44:11', '2025-09-15 00:44:11'),
-(22, 3, 'karbit telah Memperbarui VisiMisi \'\'', 'App\\Models\\VisiMisi', 1, '2025-09-15 00:51:49', '2025-09-15 00:51:49'),
-(23, 3, 'karbit telah Menghapus Berita \'test1\'', 'App\\Models\\Berita', 1, '2025-09-15 01:55:05', '2025-09-15 01:55:05'),
-(24, 3, 'karbit telah Menghapus Berita \'test 2\'', 'App\\Models\\Berita', 2, '2025-09-15 01:55:09', '2025-09-15 01:55:09'),
-(25, 3, 'karbit telah Menambahkan Berita \'SATPOL PP DAN DAMKAR KABUPATEN KATINGAN LAKUKAN PENGAMANAN KUNJUNGAN WAMEN DIKTI SAINTEK DALAM VISITASI LOKASI RENCANA PEMBANGUNAN SMA UNGGULAN GARUDA DI KABUPATEN KATINGAN\'', 'App\\Models\\Berita', 5, '2025-09-15 01:58:29', '2025-09-15 01:58:29'),
-(26, 3, 'karbit telah Menambahkan Album \'KUNJUNGAN WAMEN DIKTI SAINTEK\'', 'App\\Models\\Album', 7, '2025-09-15 02:02:24', '2025-09-15 02:02:24'),
-(27, 3, 'karbit telah Menambahkan Photo \'q\'', 'App\\Models\\Photo', 7, '2025-09-15 02:02:52', '2025-09-15 02:02:52'),
-(28, 3, 'karbit telah Menambahkan Photo \'a\'', 'App\\Models\\Photo', 8, '2025-09-15 02:03:08', '2025-09-15 02:03:08'),
-(29, 3, 'karbit telah Menambahkan Photo \'547953056 18042205139658226 7189112603969737000 N\'', 'App\\Models\\Photo', 9, '2025-09-15 18:42:16', '2025-09-15 18:42:16'),
-(30, 3, 'karbit telah Menambahkan Photo \'548757838 18042205148658226 8313748800427681272 N\'', 'App\\Models\\Photo', 10, '2025-09-15 18:43:42', '2025-09-15 18:43:42'),
-(31, 3, 'karbit telah Menambahkan Berita \'Wakil Bupati Katingan Mewakili Pemerintah Daerah Kabupaten Katingan Menyampaikan Dukungan Penuh Terhadap Kegiatan Berantas Rokok Ilegal Yang Dilaksanakan Di Kabupaten Katingan\'', 'App\\Models\\Berita', 6, '2025-09-15 19:15:38', '2025-09-15 19:15:38'),
-(32, 3, 'karbit telah Menambahkan Album \'Kegiatan Operasi dan Sosialisasi Berantas Rokok Ilegal pada Jumat, 29 Agustus 2025\'', 'App\\Models\\Album', 8, '2025-09-15 19:18:25', '2025-09-15 19:18:25'),
-(33, 3, 'karbit telah Menambahkan Photo \'540508290 18040719164658226 5971969487749178933 N\'', 'App\\Models\\Photo', 11, '2025-09-15 19:18:47', '2025-09-15 19:18:47'),
-(34, 3, 'karbit telah Menambahkan Photo \'540515278 18040719155658226 8320429478053589879 N\'', 'App\\Models\\Photo', 12, '2025-09-15 19:19:02', '2025-09-15 19:19:02'),
-(35, 3, 'karbit telah Menambahkan Photo \'541926374 18040719173658226 8281001775605850730 N\'', 'App\\Models\\Photo', 13, '2025-09-15 19:19:14', '2025-09-15 19:19:14'),
-(36, 3, 'karbit telah Menghapus Album \'test\'', 'App\\Models\\Album', 6, '2025-09-15 19:19:25', '2025-09-15 19:19:25'),
-(37, 3, 'karbit telah Menambahkan Berita \'Satpol Pp Dan Damkar Kabupaten Katingan Laksanakan Kegiatan Operasi Dan Sosialisasi Berantas Rokok Ilegal Bersama Kantor Pengawasan Dan Pelayanan Bea Dan Cukai Sampit Di Tumbang Samba, Kecamatan Katingan Tengah, Kabupaten Katingan\'', 'App\\Models\\Berita', 7, '2025-09-15 19:26:47', '2025-09-15 19:26:47'),
-(38, 3, 'karbit telah Menambahkan Album \'Melaksanakan Operasi dan Sosialisasi Pemberantasan Rokok IIlegal\'', 'App\\Models\\Album', 9, '2025-09-15 19:29:44', '2025-09-15 19:29:44'),
-(39, 3, 'karbit telah Menambahkan Photo \'540460924 18040720193658226 823800776395711522 N\'', 'App\\Models\\Photo', 14, '2025-09-15 19:29:55', '2025-09-15 19:29:55'),
-(40, 3, 'karbit telah Menambahkan Photo \'540678389 18040720184658226 9179131802906408252 N\'', 'App\\Models\\Photo', 15, '2025-09-15 19:30:06', '2025-09-15 19:30:06'),
-(41, 3, 'karbit telah Menambahkan Photo \'542353303 18040720175658226 7828118344273729917 N\'', 'App\\Models\\Photo', 16, '2025-09-15 19:30:14', '2025-09-15 19:30:14'),
-(42, 3, 'karbit telah Menghapus Berita \'test 3\'', 'App\\Models\\Berita', 3, '2025-09-15 19:41:13', '2025-09-15 19:41:13'),
-(43, 3, 'karbit telah Menghapus Berita \'test akctivity\'', 'App\\Models\\Berita', 4, '2025-09-15 19:41:17', '2025-09-15 19:41:17'),
-(44, 3, 'karbit telah Menghapus Document \'test1\'', 'App\\Models\\Document', 1, '2025-09-15 20:26:38', '2025-09-15 20:26:38'),
-(45, 3, 'karbit telah Menghapus Slider \'\'', 'App\\Models\\Slider', 3, '2025-09-15 20:26:47', '2025-09-15 20:26:47'),
-(46, 3, 'karbit telah Menghapus Slider \'\'', 'App\\Models\\Slider', 2, '2025-09-15 20:27:56', '2025-09-15 20:27:56'),
-(47, 3, 'karbit telah Menambahkan Slider \'\'', 'App\\Models\\Slider', 5, '2025-09-15 20:28:07', '2025-09-15 20:28:07'),
-(48, 3, 'karbit telah Menghapus Slider \'\'', 'App\\Models\\Slider', 5, '2025-09-15 20:30:26', '2025-09-15 20:30:26'),
-(49, 3, 'karbit telah Menambahkan Slider \'\'', 'App\\Models\\Slider', 6, '2025-09-15 20:30:36', '2025-09-15 20:30:36'),
-(50, 3, 'karbit telah Menghapus Slider \'\'', 'App\\Models\\Slider', 6, '2025-09-15 20:30:57', '2025-09-15 20:30:57'),
-(51, 3, 'karbit telah Menambahkan Photo \'Dlwosm2Triw01Ugjqwwie1Kuteq7Upcukp33Uawf\'', 'App\\Models\\Photo', 17, '2025-09-15 21:13:47', '2025-09-15 21:13:47'),
-(52, 3, 'karbit telah Menghapus Photo \'Dlwosm2Triw01Ugjqwwie1Kuteq7Upcukp33Uawf\'', 'App\\Models\\Photo', 17, '2025-09-15 21:15:03', '2025-09-15 21:15:03');
+CREATE TABLE `agendas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` date NOT NULL,
+  `waktu` time NOT NULL,
+  `lokasi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deskripsi` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `agendas`
+--
+
+INSERT INTO `agendas` (`id`, `judul`, `tanggal`, `waktu`, `lokasi`, `deskripsi`, `created_at`, `updated_at`) VALUES
+(1, 'perjalanan dinas', '2025-09-22', '02:48:00', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2025-09-22 00:47:11', '2025-09-22 01:25:35'),
+(2, 'test 2', '2025-09-04', '14:57:00', 'dirumah', 'akhkaxka hadba da', '2025-09-22 00:57:28', '2025-09-22 01:43:39'),
+(3, 'test4', '2025-09-27', '15:13:00', 'sekolah', 'test', '2025-09-22 01:13:38', '2025-09-22 01:13:38');
 
 -- --------------------------------------------------------
 
@@ -257,6 +225,24 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kontak`
+--
+
+CREATE TABLE `kontak` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nama_lengkap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telepon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipe_pesan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isi_pesan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -290,7 +276,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2025_09_09_035217_create_activity_logs_table', 3),
 (18, '2025_09_12_040936_sejarah', 4),
 (19, '2025_09_12_070048_create_tugas_table', 5),
-(20, '2025_09_15_030330_create_personal_access_tokens_table', 6);
+(20, '2025_09_15_030330_create_personal_access_tokens_table', 6),
+(21, '2025_09_22_062455_create_kontaks_table', 7),
+(22, '2025_09_22_065116_rename_kontaks_to_kontak_table', 8),
+(23, '2025_09_22_070558_add_read_at_to_kontak_table', 9),
+(24, '2025_09_22_073436_create_agendas_table', 10);
 
 -- --------------------------------------------------------
 
@@ -566,7 +556,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('nwDm5Sdrh4lKenvvbcHfF05OqOasp7sYv7a5ZXtX', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTXUxc1FBTGtNVXRaZGNsQ0tMbHZzWEVGRDVGUXFLSmJCZmsyT09pSSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1757999388);
+('EdFPdyNXAdWDkj6mnWM30avLfHYaIYSblOGuPNvA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRVNKV0JVSkl6NkZTbkhUS1VTSUdyVG5qM1I1cko5UWhlWHJCNjRRVSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9rb250YWsiO31zOjE0OiJjYXB0Y2hhX2Fuc3dlciI7aToyO30=', 1758600800);
 
 -- --------------------------------------------------------
 
@@ -671,6 +661,12 @@ ALTER TABLE `activity_logs`
   ADD KEY `activity_logs_loggable_type_loggable_id_index` (`loggable_type`,`loggable_id`);
 
 --
+-- Indexes for table `agendas`
+--
+ALTER TABLE `agendas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `albums`
 --
 ALTER TABLE `albums`
@@ -724,6 +720,12 @@ ALTER TABLE `jobs`
 -- Indexes for table `job_batches`
 --
 ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kontak`
+--
+ALTER TABLE `kontak`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -846,6 +848,12 @@ ALTER TABLE `activity_logs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
+-- AUTO_INCREMENT for table `agendas`
+--
+ALTER TABLE `agendas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
@@ -876,10 +884,16 @@ ALTER TABLE `jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `kontak`
+--
+ALTER TABLE `kontak`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `organizational_structures`
