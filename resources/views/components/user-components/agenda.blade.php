@@ -80,11 +80,58 @@
     .agenda-location i { margin-right: 0.5em; width: 12px; text-align: center; }
     .agenda-description { font-size: 0.9em; color: #343a40; margin-top: 0.5rem; padding-left: 1.5rem; border-left: 2px solid #e9ecef; }
 
-    @media (max-width: 992px) { 
-        .agenda-container { grid-template-columns: 1fr; } 
-        .calendar { order: -1; margin-bottom: 2rem; } 
-        .agenda-list-scrollable { max-height: none; overflow-y: visible; padding-right: 0; }
+    @media (max-width: 768px) { 
+    /* --- 1. PERBAIKAN LAYOUT UTAMA --- */
+    .agenda-container { 
+        grid-template-columns: 1fr; /* Ubah menjadi satu kolom */
+        padding: 1rem; /* Kurangi padding container utama */
+    } 
+    
+    .calendar { 
+        order: 2; /* Pastikan kalender ada di urutan kedua (bawah) */
+        margin-top: 2rem; 
     }
+
+    .agenda-details {
+        order: 1; /* Pastikan list agenda ada di urutan pertama (atas) */
+    }
+    
+    .agenda-list-scrollable { 
+        max-height: none; 
+        overflow-y: visible; 
+    }
+
+    /* --- 2. PENYESUAIAN UKURAN KALENDER --- */
+    .calendar {
+        padding: 1rem; /* Kurangi padding di dalam kalender */
+    }
+    
+    .calendar-header .month-year {
+        font-size: 1.1rem; /* Kecilkan font judul bulan & tahun */
+    }
+    
+    .calendar-nav {
+        width: 32px; /* Kecilkan tombol navigasi < > */
+        height: 32px;
+    }
+    
+    .calendar-grid {
+        gap: 0.25rem; /* Kurangi jarak antar tanggal */
+    }
+
+    .day-number {
+        width: 34px; /* Kecilkan ukuran lingkaran tanggal */
+        height: 34px;
+        font-size: 0.9rem; /* Kecilkan font angka tanggal */
+    }
+
+    /* Kecilkan juga titik penanda agenda */
+    .day-number.has-agenda::after {
+        width: 4px;
+        height: 4px;
+        bottom: 4px;
+    }
+}
 </style>
 @endpush
 
