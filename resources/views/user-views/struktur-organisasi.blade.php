@@ -7,7 +7,6 @@
         --brand-color-dark: #e4a60b;
     }
 
-    /* Breadcrumb & Divider (Tidak ada perubahan) */
     .breadcrumb { background-color: transparent; padding: 0.75rem 0; font-size: 0.9rem; }
     .breadcrumb-item + .breadcrumb-item::before { content: ">"; padding: 0 0.5rem; }
     .breadcrumb-item a { color: #6c757d; text-decoration: none; }
@@ -15,7 +14,6 @@
     .divider { width: 80px; height: 3px; margin: 15px 0 30px 0; }
     .bg-brand { background-color: var(--brand-color); }
 
-    /* Organization Chart Layout (Tidak ada perubahan) */
     .organization-chart {
         display: flex;
         flex-direction: column;
@@ -24,20 +22,18 @@
         align-items: center;
     }
 
-    /* Organization Level (Gap diubah agar 4 kartu muat) */
     .organization-level {
         display: flex;
         justify-content: center;
         align-items: stretch;
         flex-wrap: wrap;
-        gap: 25px; /* --- DIUBAH: Jarak antar kartu dikurangi dari 35px menjadi 25px --- */
+        gap: 25px;
         position: relative;
         width: 100%;
     }
 
-    /* Member Card (Lebar diubah agar 4 kartu muat) */
     .member-card {
-        width: 240px; /* --- DIUBAH: Lebar kartu dikurangi dari 250px menjadi 240px --- */
+        width: 240px;
         border: 1px solid #e2e8f0;
         border-radius: 8px;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -53,8 +49,7 @@
     .member-card:hover {
         transform: translateY(-5px);
     }
-    
-    /* Area Foto (Tidak ada perubahan) */
+
     .member-card-image {
         height: 250px;
         display: flex;
@@ -69,7 +64,6 @@
         object-fit: cover;
     }
 
-    /* Konten Kartu (Tidak ada perubahan) */
     .member-card-content {
         padding: 1rem;
         flex-grow: 1;
@@ -88,7 +82,6 @@
 
     <section class="pb-5" style="background-color: #f8f9fa;">
         <div class="container">
-            {{-- Breadcrumb Navigation --}}
             <nav aria-label="breadcrumb" class="mb-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
@@ -97,7 +90,6 @@
                 </ol>
             </nav>
 
-            {{-- Page Header (diubah ke tengah) --}}
             <div class="row mb-4">
                 <div class="col-12 text-center">
                     <h1 class="fw-bold text-dark">Struktur Organisasi</h1>

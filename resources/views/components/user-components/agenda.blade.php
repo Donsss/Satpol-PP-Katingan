@@ -81,57 +81,54 @@
     .agenda-description { font-size: 0.9em; color: #343a40; margin-top: 0.5rem; padding-left: 1.5rem; border-left: 2px solid #e9ecef; }
 
     @media (max-width: 768px) { 
-    /* --- 1. PERBAIKAN LAYOUT UTAMA --- */
-    .agenda-container { 
-        grid-template-columns: 1fr; /* Ubah menjadi satu kolom */
-        padding: 1rem; /* Kurangi padding container utama */
-    } 
-    
-    .calendar { 
-        order: 2; /* Pastikan kalender ada di urutan kedua (bawah) */
-        margin-top: 2rem; 
-    }
+        .agenda-container { 
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        } 
+        
+        .calendar { 
+            order: 2;
+            margin-top: 2rem; 
+        }
 
-    .agenda-details {
-        order: 1; /* Pastikan list agenda ada di urutan pertama (atas) */
-    }
-    
-    .agenda-list-scrollable { 
-        max-height: none; 
-        overflow-y: visible; 
-    }
+        .agenda-details {
+            order: 1; 
+        }
+        
+        .agenda-list-scrollable { 
+            max-height: none; 
+            overflow-y: visible; 
+        }
 
-    /* --- 2. PENYESUAIAN UKURAN KALENDER --- */
-    .calendar {
-        padding: 1rem; /* Kurangi padding di dalam kalender */
-    }
-    
-    .calendar-header .month-year {
-        font-size: 1.1rem; /* Kecilkan font judul bulan & tahun */
-    }
-    
-    .calendar-nav {
-        width: 32px; /* Kecilkan tombol navigasi < > */
-        height: 32px;
-    }
-    
-    .calendar-grid {
-        gap: 0.25rem; /* Kurangi jarak antar tanggal */
-    }
+        .calendar {
+            padding: 1rem;
+        }
+        
+        .calendar-header .month-year {
+            font-size: 1.1rem;
+        }
+        
+        .calendar-nav {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .calendar-grid {
+            gap: 0.25rem;
+        }
 
-    .day-number {
-        width: 34px; /* Kecilkan ukuran lingkaran tanggal */
-        height: 34px;
-        font-size: 0.9rem; /* Kecilkan font angka tanggal */
-    }
+        .day-number {
+            width: 34px;
+            height: 34px;
+            font-size: 0.9rem;
+        }
 
-    /* Kecilkan juga titik penanda agenda */
-    .day-number.has-agenda::after {
-        width: 4px;
-        height: 4px;
-        bottom: 4px;
+        .day-number.has-agenda::after {
+            width: 4px;
+            height: 4px;
+            bottom: 4px;
+        }
     }
-}
 </style>
 @endpush
 
