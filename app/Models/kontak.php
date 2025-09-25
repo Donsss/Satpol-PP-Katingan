@@ -27,7 +27,7 @@ class Kontak extends Model
         'telepon',
         'tipe_pesan',
         'isi_pesan',
-        'read_at', // Ditambahkan agar bisa diisi
+        'read_at',
     ];
 
     /**
@@ -36,7 +36,7 @@ class Kontak extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'read_at' => 'datetime', // Ini akan mengubah kolom 'read_at' menjadi objek Carbon
+        'read_at' => 'datetime', 
     ];
 }
 
