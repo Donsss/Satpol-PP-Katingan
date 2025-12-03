@@ -154,11 +154,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    const navbar = document.querySelector('.navbar');
+
     window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
-        } else {
+        } 
+        else if (window.scrollY < 25) {
             navbar.classList.remove('scrolled');
         }
     });
